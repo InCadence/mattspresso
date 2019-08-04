@@ -6,6 +6,8 @@ config/
 .vpprefdata/
 logs/
 
+docker-compose/deploy/*.*ar
+
 #Maven
 target/
  

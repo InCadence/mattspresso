@@ -10,7 +10,7 @@ networks:
 services:
     db:
       image: kartoza/postgis:10.0-2.4
-      container_name: coalesce-postgres
+      container_name: mattspresso-postgres
       hostname: postgis
       volumes:
         #- ./pg/postgres_data:/var/lib/postgresql
@@ -26,7 +26,7 @@ services:
       restart: unless-stopped
     geoserver:
       image: eeacms/elasticgeo #kartoza/geoserver:2.12.0
-      container_name: coalesce-geoserver
+      container_name: mattspresso-geoserver
       hostname: geoserver
       volumes:
         - geoserver-data:/opt/geoserver/data_dir
@@ -40,7 +40,7 @@ services:
       user: root
     elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
-        container_name: coalesce-elasticsearch
+        container_name: mattspresso-elasticsearch
         environment:
             - cluster.name=elasticsearch
             - http.host=0.0.0.0
@@ -57,7 +57,7 @@ services:
         restart: unless-stopped
     kibana5:
       image: docker.elastic.co/kibana/kibana:5.4.0
-      container_name: coalesce-kibana
+      container_name: mattspresso-kibana
       environment:
         - ELASTICSEARCH_URL=http://elasticsearch:9200
       ports:
@@ -70,7 +70,7 @@ services:
 
     zookeeper:
       image: wurstmeister/zookeeper
-      container_name: coalesce-zookeeper
+      container_name: mattspresso-zookeeper
       ports:
         - "2181:2181"
       networks:
@@ -79,7 +79,7 @@ services:
 
     kafka:
       image: wurstmeister/kafka
-      container_name: coalesce-kafka
+      container_name: mattspresso-kafka
       ports:
         - "9092:9092"
       networks:
@@ -93,7 +93,7 @@ services:
     karaf:
       #image: docker-oebdp.di2e.net/oebdp:0.0.7
       image: incadencecorp/coalesce-karaf:0.0.39
-      container_name: coalesce-karaf
+      container_name: mattspresso-karaf
       depends_on:
         - "elasticsearch"
       ports:
@@ -103,12 +103,13 @@ services:
       networks:
         - coalesce_network
       volumes:
-        - ./docker-compose/blueprints:/opt/karaf/deploy
+        - ./docker-compose/deploy:/opt/karaf/deploy
+        - ./mattspresso-model/templates:/opt/karaf/db/templates
       restart: unless-stopped
 
     nginx:
       image: nginx:1.15-alpine
-      container_name: coalesce-nginx
+      container_name: mattspresso-nginx
       depends_on:
         - "karaf"
       ports:
