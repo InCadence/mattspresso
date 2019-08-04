@@ -6,13 +6,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <parent>
-        <groupId>com.incadencecorp.coalesce</groupId>
-        <artifactId>coalesce-parent</artifactId>
-        <version>0.0.39</version>
-        <relativePath>../../</relativePath>
-    </parent>
-
     <url>https://github.com/InCadence/mattspresso</url>
     <licenses>
         <license>
@@ -27,13 +20,89 @@
     </scm>
 
     <modules>
+        <module>mattspresso-api</module>
+        <module>mattspresso-model</module>
+        <module>mattspresso-controller</module>
+        <module>mattspresso-view</module>
     </modules>
 
     <properties>
-	<coalesce.version>0.0.39</coalesce.version>
-        <changelog.start.tag>coalesce-0.0.39</changelog.start.tag>
+
+        <maven.bundle.version>3.5.0</maven.bundle.version>
+
+        <coalesce.version>0.0.39</coalesce.version>
+
+        <changelog.start.tag>coalesce-0.0.1</changelog.start.tag>
         <changelog.end.tag>HEAD</changelog.end.tag>
+
     </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.3</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${maven.bundle.version}</version>
+                    <extensions>true</extensions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>biz.aQute.bnd</groupId>
+                            <artifactId>biz.aQute.bndlib</artifactId>
+                            <version>3.5.0</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <instructions>
+                            <Bundle-Name>${project.name}</Bundle-Name>
+                            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+                        </instructions>
+                        <supportedProjectTypes>
+                            <supportedProjectType>jar</supportedProjectType>
+                            <supportedProjectType>bundle</supportedProjectType>
+                            <supportedProjectType>war</supportedProjectType>
+                        </supportedProjectTypes>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>bundle</id>
+                            <goals>
+                                <goal>bundle</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.karaf.tooling</groupId>
+                    <artifactId>karaf-maven-plugin</artifactId>
+                    <version>${karaf.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <startLevel>75</startLevel>
+                        <enableGeneration>true</enableGeneration>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <repositories>
         <repository>
@@ -43,6 +112,13 @@
         </repository>
     </repositories>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>incadence</id>
+            <name>InCadence Repo</name>
+            <url>http://incadencenexus.incadencecorp.com:8081/nexus/content/groups/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <distributionManagement>
         <repository>

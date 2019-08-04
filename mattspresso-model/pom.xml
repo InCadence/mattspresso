@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>mattspresso-model</artifactId>
+	<name>Mattspresso Model</name>
+    <packaging>bundle</packaging>
+
+    <parent>
+        <groupId>com.incadencecorp.mattspresso</groupId>
+        <artifactId>mattspresso-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>..</relativePath>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.incadencecorp.coalesce.plugins</groupId>
+                <artifactId>template2java-maven-plugin</artifactId>
+                <version>${coalesce.version}</version>
+                <configuration>
+                    <filePersistorName>com.incadencecorp.coalesce.framework.persistance.FilePersistorImpl</filePersistorName>
+                    <outputDir>${project.basedir}/src/main/java</outputDir>
+                    <properties>
+                        <com.incadencecorp.directory>${project.basedir}</com.incadencecorp.directory>
+                    </properties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.incadencecorp.coalesce</groupId>
+            <artifactId>coalesce-core</artifactId>
+            <version>${coalesce.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
