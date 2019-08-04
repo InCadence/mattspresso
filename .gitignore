@@ -6,6 +6,9 @@ config/
 .vpprefdata/
 logs/
 
+docker-compose/deploy/*.*ar
+mattspresso-model/src/main/java/*
+
 #Maven
 target/
  
