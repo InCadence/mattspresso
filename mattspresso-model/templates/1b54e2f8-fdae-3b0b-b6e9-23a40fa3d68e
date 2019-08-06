@@ -1,0 +1,9 @@
+<entity classname="com.incadencecorp.mattspresso.datamodel.Inventory" datecreated="2019-08-06T23:50:25.904Z" key="1b54e2f8-fdae-3b0b-b6e9-23a40fa3d68e" lastmodified="2019-08-06T23:50:25.905Z" name="Inventory" source="mattspresso" version="1.0">
+    <linkagesection name="Linkages"/>
+    <section name="Main" noindex="false">
+        <recordset maxrecords="1" minrecords="1" name="Inventory">
+            <fielddefinition datatype="guid" defaultclassificationmarking="U" label="Product Id" name="productId"/>
+            <fielddefinition datatype="integer" defaultclassificationmarking="U" defaultvalue="0" label="Quantity" name="quantity"/>
+        </recordset>
+    </section>
+</entity>

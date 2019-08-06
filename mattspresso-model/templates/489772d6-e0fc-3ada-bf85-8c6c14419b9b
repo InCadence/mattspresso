@@ -1,0 +1,9 @@
+<entity classname="com.incadencecorp.mattspresso.datamodel.Purchase" datecreated="2019-08-06T23:48:41.577Z" key="489772d6-e0fc-3ada-bf85-8c6c14419b9b" lastmodified="2019-08-06T23:48:41.577Z" name="Purchase" source="mattspresso" version="1.0">
+    <linkagesection name="Linkages"/>
+    <section name="Main" noindex="false">
+        <recordset maxrecords="0" minrecords="0" name="Purchase">
+            <fielddefinition datatype="guid" defaultclassificationmarking="U" label="Product ID" name="productId"/>
+            <fielddefinition datatype="integer" defaultclassificationmarking="U" label="Quantity" name="quantity"/>
+        </recordset>
+    </section>
+</entity>
