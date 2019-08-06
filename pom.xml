@@ -24,6 +24,7 @@
         <module>mattspresso-model</module>
         <module>mattspresso-controller</module>
         <module>mattspresso-view</module>
+        <module>mattspresso-copy</module>
     </modules>
 
     <properties>

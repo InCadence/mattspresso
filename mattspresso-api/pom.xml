@@ -17,16 +17,38 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Export-Package>
+                            ${project.groupId}.api*,
+                        </Export-Package>
+                    </instructions>
+                </configuration>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
+
         <dependency>
             <groupId>com.incadencecorp.mattspresso</groupId>
             <artifactId>mattspresso-model</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- Coalesce Dependencies -->
+
+        <dependency>
+            <groupId>com.incadencecorp.coalesce.services</groupId>
+            <artifactId>coalesce-services-common-jaxrs</artifactId>
+            <version>${coalesce.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.incadencecorp.coalesce.services</groupId>
+            <artifactId>coalesce-services-api</artifactId>
+            <version>${coalesce.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>
