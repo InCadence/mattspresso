@@ -1,0 +1,35 @@
+Links for React
+
+React Setup:
+
+https://reactjs.org/docs/create-a-new-react-app.html#create-react-app
+
+Reach Tic Tac Toe Tutorial:
+
+https://reactjs.org/tutorial/tutorial.html#setup-for-the-tutorial
+
+Top Level React API
+
+https://reactjs.org/docs/react-api.html
+
+Material UI:
+
+https://material-ui.com/components/grid://material-ui.com/components/grid/
+https://material-ui.com/api/form-control/
+
+Reach Grid Layout:
+
+https://github.com/STRML/react-grid-layout
+
+Forms tutorial:
+
+https://medium.com/@agoiabeladeyemi/the-complete-guide-to-forms-in-react-d2ba93f32825
+https://www.tutorialspoint.com/reactjs/reactjs_forms
+
+Chart Examples:
+
+https://reactjsexample.com/tag/chart/
+
+Reach Chart library:
+https://canvasjs.com/react-charts/
+
