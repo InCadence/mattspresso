@@ -25,11 +25,11 @@
     <!-- ========================== -->
     <jaxrs:server address="/mattspresso" id="someRestService">
         <jaxrs:serviceBeans>
-<!--
-            <bean class="com.incadencecorp.mattspresso.controller.ExampleControllerImpl">
+
+            <bean class="com.incadencecorp.mattspresso.controller.UserControllerImpl">
                 <argument ref="framework"/>
             </bean>
--->
+
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider">
