@@ -105,6 +105,7 @@ services:
       volumes:
         - ./docker-compose/deploy:/opt/karaf/deploy
         - ./mattspresso-model/templates:/opt/karaf/db/templates
+        - ./webpage-mockups/pictures:/opt/karaf/images/mattspresso
       restart: unless-stopped
 
     nginx:
