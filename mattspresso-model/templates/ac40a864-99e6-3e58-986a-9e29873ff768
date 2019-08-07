@@ -1,0 +1,13 @@
+<entity classname="com.incadencecorp.mattspresso.datamodel.User" datecreated="2019-08-06T23:48:41.582Z" key="ac40a864-99e6-3e58-986a-9e29873ff768" lastmodified="2019-08-06T23:48:41.582Z" name="User" source="mattspresso" version="1.0">
+    <linkagesection name="Linkages"/>
+    <section name="Main" noindex="false">
+        <recordset maxrecords="1" minrecords="1" name="User">
+            <fielddefinition datatype="string" defaultclassificationmarking="U" description="This is a user's full name." label="Full Name" name="fullName"/>
+            <fielddefinition datatype="string" defaultclassificationmarking="U" description="Type of User" label="Type" name="userType"/>
+            <fielddefinition datatype="string" defaultclassificationmarking="U" description="The user's email address." label="Email" name="email"/>
+            <fielddefinition datatype="string" defaultclassificationmarking="U" description="Address to deliver your espresso to!" label="Delivery Address" name="deliveryAddress"/>
+            <fielddefinition datatype="string" defaultclassificationmarking="U" description="The user's mobile phone." label="Mobile Phone" name="mobilePhone"/>
+            <fielddefinition datatype="integer" defaultclassificationmarking="U" defaultvalue="0" description="The balance for your rewards points!" label="Rewards Points Balance" name="rewardsPointsBalance"/>
+        </recordset>
+    </section>
+</entity>

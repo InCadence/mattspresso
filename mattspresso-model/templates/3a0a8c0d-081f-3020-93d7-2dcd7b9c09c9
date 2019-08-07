@@ -1,0 +1,10 @@
+<entity classname="com.incadencecorp.mattspresso.datamodel.Store" datecreated="2019-08-06T23:48:41.578Z" key="3a0a8c0d-081f-3020-93d7-2dcd7b9c09c9" lastmodified="2019-08-06T23:48:41.578Z" name="Store" source="mattspresso" version="1.0">
+    <linkagesection name="Linkages"/>
+    <section name="Main" noindex="false">
+        <recordset maxrecords="1" minrecords="1" name="Store">
+            <fielddefinition datatype="string" defaultclassificationmarking="U" label="Store Name" name="storeName"/>
+            <fielddefinition datatype="string" defaultclassificationmarking="U" label="Address" name="address"/>
+            <fielddefinition datatype="string" defaultclassificationmarking="U" label="Description" name="description"/>
+        </recordset>
+    </section>
+</entity>
