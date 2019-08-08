@@ -30,6 +30,26 @@
                 <argument ref="framework"/>
             </bean>
 
+
+            <bean class="com.incadencecorp.mattspresso.controller.PurchaseControllerImpl">
+                <argument ref="framework"/>
+            </bean>
+
+
+            <bean class="com.incadencecorp.mattspresso.controller.ProductControllerImpl">
+                <argument ref="framework"/>
+            </bean>
+
+
+            <bean class="com.incadencecorp.mattspresso.controller.InventoryControllerImpl">
+                <argument ref="framework"/>
+            </bean>
+
+
+            <bean class="com.incadencecorp.mattspresso.controller.StoreControllerImpl">
+                <argument ref="framework"/>
+            </bean>
+
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider">

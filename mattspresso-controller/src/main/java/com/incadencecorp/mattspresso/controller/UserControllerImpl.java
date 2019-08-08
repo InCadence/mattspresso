@@ -11,24 +11,28 @@ import com.incadencecorp.mattspresso.datamodel.impl.pojo.entity.UserPojoEntity;
 public class UserControllerImpl extends AbstractObjectController<UserPojoEntity, UserCoalesceEntity>
         implements IUserController {
 
-    public UserControllerImpl(CoalesceFramework framework) {
+    public UserControllerImpl(CoalesceFramework framework)
+    {
         super(framework);
     }
 
     @Override
-    protected UserCoalesceEntity createEntity() {
+    protected UserCoalesceEntity createEntity()
+    {
         return new UserCoalesceEntity();
     }
 
     @Override
-    protected UserPojoEntity fromCoalesce(UserCoalesceEntity entity) throws CoalesceDataFormatException {
+    protected UserPojoEntity fromCoalesce(UserCoalesceEntity entity) throws CoalesceDataFormatException
+    {
         return new UserPojoEntity(entity);
     }
 
     @Override
-    protected UserCoalesceEntity toCoalesce(UserCoalesceEntity entity, UserPojoEntity pojo) throws CoalesceException {
+    protected UserCoalesceEntity toCoalesce(UserCoalesceEntity entity, UserPojoEntity pojo) throws CoalesceException
+    {
         entity.populate(pojo);
         return entity;
-	}
-    
+    }
+
 }
