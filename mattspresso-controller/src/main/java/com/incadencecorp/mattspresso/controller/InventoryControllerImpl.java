@@ -11,24 +11,29 @@ import com.incadencecorp.mattspresso.datamodel.impl.pojo.entity.InventoryPojoEnt
 public class InventoryControllerImpl extends AbstractObjectController<InventoryPojoEntity, InventoryCoalesceEntity>
         implements IInventoryController {
 
-    public InventoryControllerImpl(CoalesceFramework framework) {
+    public InventoryControllerImpl(CoalesceFramework framework)
+    {
         super(framework);
     }
 
     @Override
-    protected InventoryCoalesceEntity createEntity() {
+    protected InventoryCoalesceEntity createEntity()
+    {
         return new InventoryCoalesceEntity();
     }
 
     @Override
-    protected InventoryPojoEntity fromCoalesce(InventoryCoalesceEntity entity) throws CoalesceDataFormatException {
+    protected InventoryPojoEntity fromCoalesce(InventoryCoalesceEntity entity) throws CoalesceDataFormatException
+    {
         return new InventoryPojoEntity(entity);
     }
 
     @Override
-    protected InventoryCoalesceEntity toCoalesce(InventoryCoalesceEntity entity, InventoryPojoEntity pojo) throws CoalesceException {
+    protected InventoryCoalesceEntity toCoalesce(InventoryCoalesceEntity entity, InventoryPojoEntity pojo)
+            throws CoalesceException
+    {
         entity.populate(pojo);
         return entity;
-	}
-    
+    }
+
 }

@@ -11,24 +11,28 @@ import com.incadencecorp.mattspresso.datamodel.impl.pojo.entity.StorePojoEntity;
 public class StoreControllerImpl extends AbstractObjectController<StorePojoEntity, StoreCoalesceEntity>
         implements IStoreController {
 
-    public StoreControllerImpl(CoalesceFramework framework) {
+    public StoreControllerImpl(CoalesceFramework framework)
+    {
         super(framework);
     }
 
     @Override
-    protected StoreCoalesceEntity createEntity() {
+    protected StoreCoalesceEntity createEntity()
+    {
         return new StoreCoalesceEntity();
     }
 
     @Override
-    protected StorePojoEntity fromCoalesce(StoreCoalesceEntity entity) throws CoalesceDataFormatException {
+    protected StorePojoEntity fromCoalesce(StoreCoalesceEntity entity) throws CoalesceDataFormatException
+    {
         return new StorePojoEntity(entity);
     }
 
     @Override
-    protected StoreCoalesceEntity toCoalesce(StoreCoalesceEntity entity, StorePojoEntity pojo) throws CoalesceException {
+    protected StoreCoalesceEntity toCoalesce(StoreCoalesceEntity entity, StorePojoEntity pojo) throws CoalesceException
+    {
         entity.populate(pojo);
         return entity;
-	}
-    
+    }
+
 }
