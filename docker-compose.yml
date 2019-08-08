@@ -92,7 +92,7 @@ services:
 
     karaf:
       #image: docker-oebdp.di2e.net/oebdp:0.0.7
-      image: incadencecorp/coalesce-karaf:0.0.39
+      image: incadencecorp/coalesce-karaf:0.0.40
       container_name: mattspresso-karaf
       depends_on:
         - "elasticsearch"

@@ -31,7 +31,7 @@
 
         <maven.bundle.version>3.5.0</maven.bundle.version>
 
-        <coalesce.version>0.0.39</coalesce.version>
+        <coalesce.version>0.0.40</coalesce.version>
 
         <changelog.start.tag>coalesce-0.0.1</changelog.start.tag>
         <changelog.end.tag>HEAD</changelog.end.tag>
