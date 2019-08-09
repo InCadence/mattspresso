@@ -60,7 +60,7 @@ class App extends React.PureComponent {
               <Button color="inherit" href={this.props.user.userRecord.userType === 'ADMIN' ? `#/admin` : `#/MainDashboard`}>
                 Dashboard
               </Button>
-              <Button color="inherit" href="#/Order">
+              <Button color="inherit" href="#/OrderForm">
                 Order
               </Button>
               <IconButton onClick={this.startSettingsPage}>
@@ -77,13 +77,13 @@ class App extends React.PureComponent {
           }
         </AppBar>
         <Grid container spacing={2}>
-          <Grid xs={3}>
+          <Grid item xs={3}>
             <div className="main-content" />
           </Grid>
-          <Grid xs={9}>
+          <Grid item xs={9}>
             <HashRouter>
               <Switch>
-                <Route exact path="/" component={this.props.user ? MainDashboard : home} />
+                <Route exact path="/" component={this.props.user ? this.props.user.userRecord.userType === 'ADMIN' ? AdminDashboard : MainDashboard : home} />
                 <Route exact path="/MainDashboard" component={MainDashboard} />
                 <Route exact path="/OrderForm" component={OrderForm} />
                 <Route exact path="/admin" component={AdminDashboard} />
