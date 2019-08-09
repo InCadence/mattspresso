@@ -14,9 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Icon from '@material-ui/core/Icon';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -64,9 +62,9 @@ class App extends React.PureComponent {
               <Button variant="contained" color="secondary" style={rightAlignStyle} onClick={this.startMenuPage}>
                   Menu
               </Button>
-              <Fab color="primary" aria-label="settings" style={rightAlignStyle} onClick={this.startSettingsPage}>
+              <Button color="primary" aria-label="settings" style={rightAlignStyle} onClick={this.startSettingsPage}>
                 <SettingsIcon />
-              </Fab>
+              </Button>
               <Button color="inherit" onClick={this.props.logout}>Logout</Button>
             </Toolbar>
           }
