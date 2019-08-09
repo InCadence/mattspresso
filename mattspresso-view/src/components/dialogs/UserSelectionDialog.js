@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { fetchUser, fetchUsers, createAccount } from '../../actions/userActions';
+import { fetchUserSaga, fetchUsers, createAccount } from '../../actions/userActions';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -31,7 +31,7 @@ class UserSelectionDialog extends React.Component {
 
     handleUserSelection = (key) => {
         this.setState({submitted: true});
-        this.props.fetchUser(key);
+        this.props.fetchUserSaga(key);
     }
 
     render() {
@@ -89,11 +89,11 @@ const mapStateToProps = state => ({
 })
 
 UserSelectionDialog.propTypes = {
-    fetchUser: PropTypes.func.isRequired,
+    fetchUserSaga: PropTypes.func.isRequired,
     fetchUsers: PropTypes.func.isRequired,
     createAccount: PropTypes.func.isRequired,
     opened: PropTypes.bool.isRequired,
     users: PropTypes.array.isRequired
 }
 
-export default connect(mapStateToProps, { fetchUsers, fetchUser, createAccount })(UserSelectionDialog);
+export default connect(mapStateToProps, { fetchUsers, fetchUserSaga, createAccount })(UserSelectionDialog);
