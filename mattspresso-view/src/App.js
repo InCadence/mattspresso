@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import { MainDashboard, OrderForm } from './components'
+import { MainDashboard, OrderForm, AdminDashboard } from './components'
 import { UserCreateDialog, UserSelectionDialog } from './components/dialogs'
 
 import { Switch, HashRouter, Route } from 'react-router-dom';
@@ -57,7 +57,7 @@ class App extends React.PureComponent {
                 <Avatar style={{ marginRight: '10px' }} alt={this.props.user.userRecord.fullName} src="/images/mattspresso/avatar.png" />
               </Tooltip>
               <Typography variant="h6" style={{ flexGrow: 1 }}>Mattspresso</Typography>
-              <Button color="inherit" href={this.props.user.userRecord.userType === 'ADMIN' ? `#/AdminDashboard` : `#/MainDashboard`}>
+              <Button color="inherit" href={this.props.user.userRecord.userType === 'ADMIN' ? `#/admin` : `#/MainDashboard`}>
                 Dashboard
               </Button>
               <Button color="inherit" href="#/Order">
@@ -86,8 +86,10 @@ class App extends React.PureComponent {
                 <Route exact path="/" component={this.props.user ? MainDashboard : home} />
                 <Route exact path="/MainDashboard" component={MainDashboard} />
                 <Route exact path="/OrderForm" component={OrderForm} />
+                <Route exact path="/admin" component={AdminDashboard} />
               </Switch>
-            </HashRouter>          </Grid>
+            </HashRouter>
+          </Grid>
         </Grid>
 
         {this.props.promptNew &&
