@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 
 import { createUser } from '../../actions/userActions';
 import FieldInput from '../FieldInput';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class UserCreateDialog extends React.Component {
 
@@ -18,6 +19,7 @@ class UserCreateDialog extends React.Component {
         super(props);
 
         this.state = {
+            submitted: false,
             user: {
                 fullName: "",
                 userType: "CUSTOMER",
@@ -31,6 +33,7 @@ class UserCreateDialog extends React.Component {
     createUser = () => {
         console.log(this.state.user);
         
+        this.setState({submitted: true});
         this.props.createUser(this.state.user);
     }
 
@@ -46,6 +49,13 @@ class UserCreateDialog extends React.Component {
             >
                 <DialogTitle id="scroll-dialog-title">New User Form</DialogTitle>
                 <DialogContent>
+                    {this.state.submitted && 
+                        <center>
+                            <CircularProgress/>
+                        </center>
+                    }                    
+                    {!this.state.submitted &&
+                        <div>
                         <FieldInput
                             autoFocus
                             showLabels={true}
@@ -111,6 +121,8 @@ class UserCreateDialog extends React.Component {
                             variant="outlined"
                             disableUnderline={false}
                         />
+                        </div>
+                    }
                 </DialogContent>
                 <DialogActions>
                     <Button

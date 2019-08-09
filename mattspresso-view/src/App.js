@@ -25,7 +25,7 @@ import { clearError } from './actions';
 import { login, logout } from './actions/userActions';
 
 const home = () => (
-  <CurrentUser userkey="c9449e43-5e2c-4874-8900-55d5708f2005" />
+  <div />
 )
 var rightAlignStyle = {
   marginLeft: "auto",
@@ -67,12 +67,19 @@ class App extends React.PureComponent {
         <HashRouter>
           <Switch>
             <Route exact path="/" component={home} />
+<<<<<<< HEAD
             <Route exact path="/users" component={UserList} />
             <Route exact path="/MainDashboard" component={MainDashboard} />
+=======
+>>>>>>> Added progress bars
           </Switch>
         </HashRouter>
-        <UserCreateDialog opened={this.props.promptNew} />
-        <UserSelectionDialog opened={this.props.promptLogin} />
+        {this.props.promptNew &&
+          <UserCreateDialog opened />
+        }
+        {this.props.promptLogin &&
+          <UserSelectionDialog opened />
+        }
         <Dialog
           open={this.props.error !== undefined}
           onClose={this.clearError}

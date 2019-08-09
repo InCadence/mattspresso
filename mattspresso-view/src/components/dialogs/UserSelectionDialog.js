@@ -10,11 +10,28 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-class UserSelectionDialog extends React.PureComponent {
+class UserSelectionDialog extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {submitted: false};
+    }
 
     componentDidMount() {
         this.props.fetchUsers(this.props.userkey);
+    }
+
+    handleNewUserSelection = () => {
+        this.setState({submitted: true});
+        this.props.createAccount();
+    }
+
+    handleUserSelection = (key) => {
+        this.setState({submitted: true});
+        this.props.fetchUser(key);
     }
 
     render() {
@@ -27,7 +44,7 @@ class UserSelectionDialog extends React.PureComponent {
                     <ListItem
                         button
                         key={item.key}
-                        onClick={() => this.props.fetchUser(item.key)}
+                        onClick={() => this.handleUserSelection(item.key)}
                     >
                         <ListItemText primary={item.name} />
                     </ListItem>
@@ -48,16 +65,19 @@ class UserSelectionDialog extends React.PureComponent {
             >
                 <DialogTitle id="scroll-dialog-title">Select User</DialogTitle>
                 <DialogContent>
-                    <List dense>
-                        <ListItem
-                            button
-                            key="new"
-                            onClick={this.props.createAccount}
-                        >
-                            <ListItemText primary="New User" />
-                        </ListItem>
-                        {users}
-                    </List>
+                    {this.state.submitted && 
+                        <center>
+                            <CircularProgress/>
+                        </center>
+                    }
+                    {!this.state.submitted &&
+                        <List dense>
+                            <ListItem button key="new" onClick={this.handleNewUserSelection}>
+                                <ListItemText primary="New User" />
+                            </ListItem>
+                            {users}
+                        </List>
+                    }
                 </DialogContent>
             </Dialog>
         )
