@@ -8,4 +8,4 @@ import com.incadencecorp.mattspresso.datamodel.impl.pojo.entity.UserPojoEntity;
 @Path("user")
 public interface IUserController extends IObjectControllerJaxRs<UserPojoEntity> {
 
-}
+}   

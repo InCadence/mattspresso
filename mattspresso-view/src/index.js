@@ -1,7 +1,8 @@
-import "babel-polyfill";
-
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import { Provider } from 'react-redux';
+import store from './store';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
 import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
@@ -15,7 +16,7 @@ document.title = pjson.title;
 
 function loadJSON(name)
 {
-  return fetch(`/property/${name}.json`, {
+  return fetch(`cxf/core/property/${name}.json`, {
       method: "GET",
       headers: new Headers({
         'content-type': 'application/json; charset=utf-8'
@@ -36,7 +37,9 @@ function loadApplication(theme) {
   ReactDOM.render(
     <MuiThemeProvider theme={createMuiTheme(theme)}>
       <V0MuiThemeProvider muiTheme={getMuiTheme(theme)}>
-        <App icon={pjson.icon} title={pjson.title} theme={theme}/>
+        <Provider store={store}>
+          <App icon={pjson.icon} title={pjson.title} theme={theme}/>
+        </Provider>
       </V0MuiThemeProvider>
     </MuiThemeProvider>,
     document.getElementById('root')
