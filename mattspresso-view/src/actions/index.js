@@ -1,11 +1,11 @@
-import { ERROR } from './types'
+export const COMMON_ACTIONS = {
+    ERROR: 'ERROR',
+    ERROR_CLEAR: 'ERROR_CLEAR'
+}
 
 export const clearError = () => dispatch => {
-    console.log("clearing error...");
-    
     dispatch({
-        type: ERROR,
+        type: COMMON_ACTIONS.ERROR,
         payload: undefined
     })
-
 }

@@ -6,7 +6,7 @@ import { fetchUser } from '../actions/userActions';
 
 class CurrentUser extends React.PureComponent {
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchUser(this.props.userkey);
     }
 

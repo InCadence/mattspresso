@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import { CurrentUser, UserList } from './components'
 
+import { Switch, HashRouter, Route } from 'react-router-dom';
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -13,6 +15,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
 import { clearError } from './actions';
+
+const home = () => (
+  <CurrentUser userkey="c9449e43-5e2c-4874-8900-55d5708f2005" />
+) 
 
 class App extends React.PureComponent {
 
@@ -23,8 +29,12 @@ class App extends React.PureComponent {
   render() {
     return (
       <div>
-        <UserList />
-        <CurrentUser userkey="dce9b003-0b01-4032-9a52-6062c355381c" />
+        <HashRouter>
+          <Switch>
+            <Route exact path="/" component={home} />
+            <Route exact path="/users" component={UserList} />
+          </Switch>
+        </HashRouter>
         <Dialog
           open={this.props.error !== undefined}
           onClose={this.clearError}
@@ -56,4 +66,4 @@ const mapStateToProps = state => ({
   error: state.common.error
 })
 
-export default connect(mapStateToProps, {clearError})(App);
+export default connect(mapStateToProps, { clearError })(App);

@@ -6,7 +6,7 @@ import { fetchUsers } from '../actions/userActions';
 
 class UserList extends React.PureComponent {
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchUsers(this.props.userkey);
     }
 
