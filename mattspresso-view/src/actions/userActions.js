@@ -13,6 +13,14 @@ export function* watchFechUser() {
     yield takeLatest(ACTIONS.FETCH_USER, fetchUserAsync);
 }
 
+export const fetchUserSaga = (key) => dispatch => {
+
+    dispatch({
+        type: ACTIONS.FETCH_USER,
+        payload: key
+    });
+}
+
 function* fetchUserAsync(action) {
 
     var res = yield call(fetch, `cxf/mattspresso/user/${action.payload}`, {
@@ -32,14 +40,6 @@ function* fetchUserAsync(action) {
 }
 
 export const fetchUser = (key) => dispatch => {
-
-    dispatch({
-        type: ACTIONS.FETCH_USER,
-        payload: key
-    });
-    /*
-    console.log(`fetching user... ${key}`);
-
     fetch(`cxf/mattspresso/user/${key}`, {
         method: "GET",
         headers: new Headers({
@@ -55,14 +55,13 @@ export const fetchUser = (key) => dispatch => {
             return res.json();
         })
         .then(data => dispatch({
-            type: USER_ACTIONS.FETCH_USER,
+            type: ACTIONS.FETCH_USER_SUCCESS,
             payload: data
         }))
         .catch(error => dispatch({
             type: COMMON_ACTIONS.ERROR,
             payload: error.message
         }));
-*/
 }
 
 export function* watchFechUsers() {
@@ -90,13 +89,17 @@ function* fetchUsersAsync(action) {
 
 }
 
-export const fetchUsers = () => dispatch => {
+export const fetchUsersSaga = () => dispatch => {
 
     dispatch({
         type: ACTIONS.FETCH_USERS,
         payload: undefined
     });
-    /*
+    
+}
+
+export const fetchUsers = () => dispatch => {
+
         console.log(`fetching users...`);
     
         const query = { "type": "User", "pageSize": 200, "pageNumber": 1, "propertyNames": ["User.fullName"], "sortBy": [{ "propertyName": "CoalesceEntity.LastModified", "sortOrder": "ASC" }], "group": { "operator": "AND", "criteria": [{ "key": "456b70f3-3e6c-4ab2-967c-99a00ec3267e", "recordset": "CoalesceEntity", "field": "name", "operator": "EqualTo", "value": "User", "matchCase": false }], "groups": [] } };
@@ -117,12 +120,11 @@ export const fetchUsers = () => dispatch => {
             return res.json();
         })
         .then(data => dispatch({
-            type: USER_ACTIONS.FETCH_USERS,
+            type: ACTIONS.FETCH_USERS_SUCCESS,
             payload: data.hits.map(hit => {return {key: hit.entityKey, name: hit.values[0]}})
         }))
         .catch(error => dispatch({
             type: COMMON_ACTIONS.ERROR,
             payload: error.message
         }));
-    */
 }
