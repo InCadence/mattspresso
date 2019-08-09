@@ -49,9 +49,12 @@ class MainDashboard extends React.PureComponent {
             <Typography variant="body1" style={rightAlignStyle} gutterBottom>
               Achievements Progress
             </Typography>
-            <LinearProgress color="secondary" variant="determinate" value={25} />
+            <LinearProgress color="secondary" variant="determinate" value={{this.props.progress ? this.props.progress: ""}} />
             <Typography variant="subtitle1" gutterBottom>
-            {this.props.user ? this.props.user.userRecord.fullName : ""}
+            Rewards Points:
+            </Typography>
+            <Typography variant="subtitle1" gutterBottom>
+            {this.props.user ? this.props.user.userRecord.rewardsPointsBalance : ""}
             </Typography>
 
           </Grid>
@@ -69,7 +72,8 @@ class MainDashboard extends React.PureComponent {
   }
 
   const mapStateToProps = state => ({
-    user: state.users.current
+    user: state.users.current,
+    progress: state.users.current.userRecord.rewardsPointsBalance % 550
 
   })
 
