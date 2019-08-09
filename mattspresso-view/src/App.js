@@ -20,6 +20,8 @@ import Icon from '@material-ui/core/Icon';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { clearError } from './actions';
 import { login, logout } from './actions/userActions';
@@ -38,11 +40,11 @@ class App extends React.PureComponent {
     this.props.clearError();
   }
 
-  startSettingsPage(){
+  startSettingsPage() {
     console.log("Starting Settings page.")
   }
 
-  startMenuPage(){
+  startMenuPage() {
     console.log("Starting Menu page.")
   }
 
@@ -53,23 +55,36 @@ class App extends React.PureComponent {
     return (
       <div>
         <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" style={{ flexGrow: 1 }}>{this.props.user ? this.props.user.userRecord.fullName : ""}</Typography>
-            <Button variant="contained" color="secondary" style={rightAlignStyle} onClick={this.startMenuPage}>
-            Menu
-            </Button>
-            <Fab color="primary" aria-label="settings" style={rightAlignStyle} onClick={this.startSettingsPage}>
-            <SettingsIcon />
-            </Fab>
-            <Button color="inherit" onClick={this.props.user ? this.props.logout : this.props.login}>{this.props.user ? "Logout" :"Login"}</Button>
-          </Toolbar>
+          {this.props.user &&
+            <Toolbar>
+              <Tooltip title={this.props.user.userRecord.fullName} placement='bottom'>
+                <Avatar style={{ marginRight: '10px' }} alt={this.props.user.userRecord.fullName} src="/images/mattspresso/avatar.png" />
+              </Tooltip>
+              <Typography variant="h6" style={{ flexGrow: 1 }}>Mattspresso</Typography>
+              <Button variant="contained" color="secondary" style={rightAlignStyle} onClick={this.startMenuPage}>
+                  Menu
+              </Button>
+              <Fab color="primary" aria-label="settings" style={rightAlignStyle} onClick={this.startSettingsPage}>
+                <SettingsIcon />
+              </Fab>
+              <Button color="inherit" onClick={this.props.logout}>Logout</Button>
+            </Toolbar>
+          }
+          {!this.props.user &&
+            <Toolbar>
+              <Typography variant="h6" style={{ flexGrow: 1 }}>Mattspresso</Typography>
+              <Button color="inherit" onClick={this.props.login}>Login</Button>
+            </Toolbar>
+          }
         </AppBar>
-        <HashRouter>
-          <Switch>
-            <Route exact path="/" component={home} />
-            <Route exact path="/MainDashboard" component={MainDashboard} />
-          </Switch>
-        </HashRouter>
+        <div className="main-content">
+          <HashRouter>
+            <Switch>
+              <Route exact path="/" component={home} />
+              <Route exact path="/MainDashboard" component={MainDashboard} />
+            </Switch>
+          </HashRouter>
+        </div>
         {this.props.promptNew &&
           <UserCreateDialog opened />
         }
