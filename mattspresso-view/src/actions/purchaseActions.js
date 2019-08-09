@@ -9,13 +9,13 @@ export const ACTIONS = {
 
 export const makePurchase = (products) => dispatch => {
     console.log(products);
-    fetch(`cxf/mattspresso`, {
+    fetch(`cxf/mattspresso/purchase`, {
         method: "POST",
         headers: new Headers({
             'content-type': 'application/json; charset=utf-8'
         }),
         body: JSON.stringify({
-            "purchaseRecord": products,
+            "purchaseRecords": [products],
             "key": uuid.v4(),
         })
     })
