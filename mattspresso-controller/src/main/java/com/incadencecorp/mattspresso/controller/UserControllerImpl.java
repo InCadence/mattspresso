@@ -3,15 +3,16 @@ package com.incadencecorp.mattspresso.controller;
 import com.incadencecorp.coalesce.common.exceptions.CoalesceDataFormatException;
 import com.incadencecorp.coalesce.common.exceptions.CoalesceException;
 import com.incadencecorp.coalesce.framework.CoalesceFramework;
+import com.incadencecorp.coalesce.search.CoalesceSearchFramework;
 import com.incadencecorp.coalesce.services.crud.service.data.controllers.AbstractObjectController;
 import com.incadencecorp.mattspresso.api.IUserController;
 import com.incadencecorp.mattspresso.datamodel.impl.coalesce.entity.UserCoalesceEntity;
 import com.incadencecorp.mattspresso.datamodel.impl.pojo.entity.UserPojoEntity;
 
-public class UserControllerImpl extends AbstractObjectController<UserPojoEntity, UserCoalesceEntity>
+public class UserControllerImpl extends AbstractMattspressoController<UserPojoEntity, UserCoalesceEntity>
         implements IUserController {
 
-    public UserControllerImpl(CoalesceFramework framework)
+    public UserControllerImpl(CoalesceSearchFramework framework)
     {
         super(framework);
     }

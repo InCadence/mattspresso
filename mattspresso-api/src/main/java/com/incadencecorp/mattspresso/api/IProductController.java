@@ -6,6 +6,6 @@ import com.incadencecorp.mattspresso.datamodel.impl.pojo.entity.ProductPojoEntit
 import javax.ws.rs.Path;
 
 @Path("product")
-public interface IProductController extends IObjectControllerJaxRs<ProductPojoEntity> {
+public interface IProductController extends IMattspressoControllerJaxRs<ProductPojoEntity> {
 
 }

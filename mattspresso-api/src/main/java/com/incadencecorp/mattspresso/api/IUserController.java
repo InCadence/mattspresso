@@ -6,6 +6,6 @@ import com.incadencecorp.coalesce.services.common.jaxrs.IObjectControllerJaxRs;
 import com.incadencecorp.mattspresso.datamodel.impl.pojo.entity.UserPojoEntity;
 
 @Path("user")
-public interface IUserController extends IObjectControllerJaxRs<UserPojoEntity> {
+public interface IUserController extends IMattspressoControllerJaxRs<UserPojoEntity> {
 
 }   

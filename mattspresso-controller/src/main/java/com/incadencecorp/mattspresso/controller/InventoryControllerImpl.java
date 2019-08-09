@@ -3,15 +3,16 @@ package com.incadencecorp.mattspresso.controller;
 import com.incadencecorp.coalesce.common.exceptions.CoalesceDataFormatException;
 import com.incadencecorp.coalesce.common.exceptions.CoalesceException;
 import com.incadencecorp.coalesce.framework.CoalesceFramework;
+import com.incadencecorp.coalesce.search.CoalesceSearchFramework;
 import com.incadencecorp.coalesce.services.crud.service.data.controllers.AbstractObjectController;
 import com.incadencecorp.mattspresso.api.IInventoryController;
 import com.incadencecorp.mattspresso.datamodel.impl.coalesce.entity.InventoryCoalesceEntity;
 import com.incadencecorp.mattspresso.datamodel.impl.pojo.entity.InventoryPojoEntity;
 
-public class InventoryControllerImpl extends AbstractObjectController<InventoryPojoEntity, InventoryCoalesceEntity>
+public class InventoryControllerImpl extends AbstractMattspressoController<InventoryPojoEntity, InventoryCoalesceEntity>
         implements IInventoryController {
 
-    public InventoryControllerImpl(CoalesceFramework framework)
+    public InventoryControllerImpl(CoalesceSearchFramework framework)
     {
         super(framework);
     }

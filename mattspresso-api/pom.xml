@@ -48,6 +48,11 @@
             <artifactId>coalesce-services-api</artifactId>
             <version>${coalesce.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.incadencecorp.coalesce.services.search</groupId>
+            <artifactId>coalesce-search-service-data</artifactId>
+            <version>${coalesce.version}</version>
+        </dependency>
 
     </dependencies>
 

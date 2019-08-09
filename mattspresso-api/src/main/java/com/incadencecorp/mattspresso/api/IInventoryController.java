@@ -6,6 +6,6 @@ import com.incadencecorp.mattspresso.datamodel.impl.pojo.entity.InventoryPojoEnt
 import javax.ws.rs.Path;
 
 @Path("inventory")
-public interface IInventoryController extends IObjectControllerJaxRs<InventoryPojoEntity> {
+public interface IInventoryController extends IMattspressoControllerJaxRs<InventoryPojoEntity> {
 
 }
