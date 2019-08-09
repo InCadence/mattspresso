@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import { CurrentUser, UserList } from './components'
+import { CurrentUser, UserList, MainDashboard } from './components'
 import { UserCreateDialog, UserSelectionDialog } from './components/dialogs'
 
 import { Switch, HashRouter, Route } from 'react-router-dom';
@@ -47,6 +47,7 @@ class App extends React.PureComponent {
           <Switch>
             <Route exact path="/" component={home} />
             <Route exact path="/users" component={UserList} />
+            <Route exact path="/MainDashboard" component={MainDashboard} />
           </Switch>
         </HashRouter>
         <UserCreateDialog opened={this.props.promptNew} />
