@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import { CurrentUser, UserList, MainDashboard } from './components'
+import { MainDashboard } from './components'
 import { UserCreateDialog, UserSelectionDialog } from './components/dialogs'
 
 import { Switch, HashRouter, Route } from 'react-router-dom';
@@ -67,11 +67,7 @@ class App extends React.PureComponent {
         <HashRouter>
           <Switch>
             <Route exact path="/" component={home} />
-<<<<<<< HEAD
-            <Route exact path="/users" component={UserList} />
             <Route exact path="/MainDashboard" component={MainDashboard} />
-=======
->>>>>>> Added progress bars
           </Switch>
         </HashRouter>
         {this.props.promptNew &&
