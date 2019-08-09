@@ -21,6 +21,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
+import Grid from '@material-ui/core/Grid';
 
 import { clearError } from './actions';
 import { login, logout } from './actions/userActions';
@@ -56,13 +57,16 @@ class App extends React.PureComponent {
                 <Avatar style={{ marginRight: '10px' }} alt={this.props.user.userRecord.fullName} src="/images/mattspresso/avatar.png" />
               </Tooltip>
               <Typography variant="h6" style={{ flexGrow: 1 }}>Mattspresso</Typography>
-              <Button variant="contained" color="secondary" onClick={this.startMenuPage}>
-                  Menu
+              <Button color="inherit" href={this.props.user.userRecord.userType === 'ADMIN' ? `#/AdminDashboard` : `#/MainDashboard`}>
+                Dashboard
+              </Button>
+              <Button color="inherit" href="#/Order">
+                Order
               </Button>
               <IconButton onClick={this.startSettingsPage}>
                 <SettingsIcon />
               </IconButton >
-              <Button color="inherit" onClick={this.props.logout}>Logout</Button>
+              <Button color="inherit" href="#/" onClick={this.props.logout}>Logout</Button>
             </Toolbar>
           }
           {!this.props.user &&
@@ -72,14 +76,19 @@ class App extends React.PureComponent {
             </Toolbar>
           }
         </AppBar>
-        <div className="main-content">
-          <HashRouter>
-            <Switch>
-              <Route exact path="/" component={home} />
-              <Route exact path="/MainDashboard" component={MainDashboard} />
-            </Switch>
-          </HashRouter>
-        </div>
+        <Grid container spacing={2}>
+          <Grid xs={3}>
+            <div className="main-content" />
+          </Grid>
+          <Grid xs={9}>
+            <HashRouter>
+              <Switch>
+                <Route exact path="/" component={this.props.user ? MainDashboard : home} />
+                <Route exact path="/MainDashboard" component={MainDashboard} />
+              </Switch>
+            </HashRouter>          </Grid>
+        </Grid>
+
         {this.props.promptNew &&
           <UserCreateDialog opened />
         }
