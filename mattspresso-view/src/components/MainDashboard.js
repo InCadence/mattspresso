@@ -1,9 +1,15 @@
 import React from "react";
+import Paper from '@material-ui/core/Paper'
+import _ from "lodash";
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 var rightAlignStyle = {
@@ -13,6 +19,11 @@ var rightAlignStyle = {
 var imageStyle = {
   width:500,
   height:500
+}
+
+var favImageStyle = {
+  width:50,
+  height:50
 }
 
 const jbImage = "/images/mattspresso/models_drinking_coffee/jackblack2.png"
@@ -40,6 +51,8 @@ class MainDashboard extends React.PureComponent {
 
 
   render(){
+    console.log("LOSDIFJSOFIJDSF")
+      console.log(this.props)
       return(
         <div>
         <Grid>
@@ -47,14 +60,17 @@ class MainDashboard extends React.PureComponent {
             <Typography variant="body1" style={rightAlignStyle} gutterBottom>
               Achievements Progress
             </Typography>
-            <LinearProgress color="secondary" variant="determinate" value={25} />
+            <LinearProgress color="secondary" variant="determinate" value={this.props.user ? this.props.user.userRecord.rewardsPointsBalance%100 : 0} />
             <Typography variant="subtitle1" gutterBottom>
-            Reward Points: 123456
+            Rewards Points:
+            </Typography>
+            <Typography variant="subtitle1" gutterBottom>
+            {this.props.user ? this.props.user.userRecord.rewardsPointsBalance : ""}
             </Typography>
 
           </Grid>
           <Grid item xs={6} style={rightAlignStyle}>
-            <img alt="myimage" src={jbImage} style={imageStyle}/>
+            <img src={jbImage} style={imageStyle}/>
           </Grid>
           <Grid item xs={6} >
               {this.generateFavorites()}
@@ -67,8 +83,7 @@ class MainDashboard extends React.PureComponent {
   }
 
   const mapStateToProps = state => ({
-    user: state.users.current
-
+    user: state.users.current,
   })
 
  export default connect(mapStateToProps, {})(MainDashboard);
