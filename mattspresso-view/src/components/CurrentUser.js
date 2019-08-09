@@ -11,8 +11,6 @@ class CurrentUser extends React.PureComponent {
     }
 
     render() {
-        console.log(this.props.user ? this.props.user.userRecord.fullName : '');
-        
         return (
             <div>
                 {this.props.user ? this.props.user.userRecord.fullName : ''}
