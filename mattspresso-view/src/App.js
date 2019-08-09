@@ -14,6 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -27,10 +28,6 @@ import { login, logout } from './actions/userActions';
 const home = () => (
   <div />
 )
-var rightAlignStyle = {
-  marginLeft: "auto",
-  marginRight: -12
-}
 
 class App extends React.PureComponent {
 
@@ -59,12 +56,12 @@ class App extends React.PureComponent {
                 <Avatar style={{ marginRight: '10px' }} alt={this.props.user.userRecord.fullName} src="/images/mattspresso/avatar.png" />
               </Tooltip>
               <Typography variant="h6" style={{ flexGrow: 1 }}>Mattspresso</Typography>
-              <Button variant="contained" color="secondary" style={rightAlignStyle} onClick={this.startMenuPage}>
+              <Button variant="contained" color="secondary" onClick={this.startMenuPage}>
                   Menu
               </Button>
-              <Button color="primary" aria-label="settings" style={rightAlignStyle} onClick={this.startSettingsPage}>
+              <IconButton onClick={this.startSettingsPage}>
                 <SettingsIcon />
-              </Button>
+              </IconButton >
               <Button color="inherit" onClick={this.props.logout}>Logout</Button>
             </Toolbar>
           }
