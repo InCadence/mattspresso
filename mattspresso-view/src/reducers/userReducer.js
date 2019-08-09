@@ -1,4 +1,4 @@
-import { FETCH_USER, FETCH_USER_SUCCESS, FETCH_USERS, FETCH_USERS_SUCCESS } from '../actions/types';
+import { USER_ACTIONS } from '../actions/userActions';
 
 const initialState = {
     users: {}
@@ -6,19 +6,19 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case FETCH_USER_SUCCESS:
+        case USER_ACTIONS.FETCH_USER_SUCCESS:
             return {
                 ...state,
                 current: action.payload
             }
-        case FETCH_USERS_SUCCESS:
+        case USER_ACTIONS.FETCH_USERS_SUCCESS:
             return {
                 ...state,
                 list: action.payload
             }
         default:
-        case FETCH_USER:
-        case FETCH_USERS:
+        case USER_ACTIONS.FETCH_USER:
+        case USER_ACTIONS.FETCH_USERS:
             return state;
     }
 }

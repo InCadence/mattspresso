@@ -1,4 +1,4 @@
- import { FETCH_THEME } from '../actions/types';
+ import { THEME_ACTIONS } from '../actions/themeActions';
 
  const initialState = {
      theme: {}
@@ -6,7 +6,7 @@
 
  export default function(state = initialState, action) {
      switch(action.type) {
-        case FETCH_THEME:
+        case THEME_ACTIONS.FETCH_THEME:
                 return {
                 ...state, 
                 theme: action.payload

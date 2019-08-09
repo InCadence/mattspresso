@@ -1,4 +1,4 @@
-import { ERROR } from '../actions/types';
+import { COMMON_ACTIONS } from '../actions';
 
 const initialState = {
     common: {}
@@ -6,7 +6,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch(action.type) {
-       case ERROR:
+       case COMMON_ACTIONS.ERROR:
            return {
                ...state, 
                error: action.payload

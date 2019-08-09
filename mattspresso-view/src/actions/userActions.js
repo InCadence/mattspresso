@@ -1,13 +1,21 @@
-import { FETCH_USER, FETCH_USER_SUCCESS, FETCH_USERS, ERROR, FETCH_USERS_SUCCESS } from './types';
+import { COMMON_ACTIONS } from './';
 import { takeLatest, put, call } from 'redux-saga/effects';
 
+export const USER_ACTIONS = {
+    FETCH_USER: 'FETCH_ACCOUNTS',
+    FETCH_USER_SUCCESS: 'FETCH_ACCOUNTS_SUCCESS',
+
+    FETCH_USERS: 'FETCH_USERS',
+    FETCH_USERS_SUCCESS: 'FETCH_USERS_SUCCESS'
+}
+
 export function* watchFechUser() {
-    yield takeLatest(FETCH_USER, fetchUserAsync);
+    yield takeLatest(USER_ACTIONS.FETCH_USER, fetchUserAsync);
 }
 
 function* fetchUserAsync(action) {
 
-    var res = yield call (fetch, `cxf/mattspresso/user/${action.payload}`, {
+    var res = yield call(fetch, `cxf/mattspresso/user/${action.payload}`, {
         method: "GET",
         headers: new Headers({
             'content-type': 'application/json; charset=utf-8'
@@ -15,10 +23,10 @@ function* fetchUserAsync(action) {
     })
 
     if (res.ok) {
-        var json = yield call ([res, res.json]);
-        yield put ({type: FETCH_USER_SUCCESS, payload: json});
+        var json = yield call([res, res.json]);
+        yield put({ type: USER_ACTIONS.FETCH_USER_SUCCESS, payload: json });
     } else {
-        yield put ({type: ERROR, payload: res.statusText});
+        yield put({ type: COMMON_ACTIONS.ERROR, payload: res.statusText });
     }
 
 }
@@ -26,7 +34,7 @@ function* fetchUserAsync(action) {
 export const fetchUser = (key) => dispatch => {
 
     dispatch({
-        type: FETCH_USER,
+        type: USER_ACTIONS.FETCH_USER,
         payload: key
     });
     /*
@@ -47,25 +55,25 @@ export const fetchUser = (key) => dispatch => {
             return res.json();
         })
         .then(data => dispatch({
-            type: FETCH_USER,
+            type: USER_ACTIONS.FETCH_USER,
             payload: data
         }))
         .catch(error => dispatch({
-            type: ERROR,
+            type: COMMON_ACTIONS.ERROR,
             payload: error.message
         }));
 */
 }
 
 export function* watchFechUsers() {
-    yield takeLatest(FETCH_USERS, fetchUsersAsync);
+    yield takeLatest(USER_ACTIONS.FETCH_USERS, fetchUsersAsync);
 }
 
 function* fetchUsersAsync(action) {
 
     const query = { "type": "User", "pageSize": 200, "pageNumber": 1, "propertyNames": ["User.fullName"], "sortBy": [{ "propertyName": "CoalesceEntity.LastModified", "sortOrder": "ASC" }], "group": { "operator": "AND", "criteria": [{ "key": "456b70f3-3e6c-4ab2-967c-99a00ec3267e", "recordset": "CoalesceEntity", "field": "name", "operator": "EqualTo", "value": "User", "matchCase": false }], "groups": [] } };
 
-    var res = yield call (fetch, `cxf/data/search/complex/`, {
+    var res = yield call(fetch, `cxf/data/search/complex/`, {
         method: "POST",
         headers: new Headers({
             'content-type': 'application/json; charset=utf-8'
@@ -74,10 +82,10 @@ function* fetchUsersAsync(action) {
     })
 
     if (res.ok) {
-        var json = yield call ([res, res.json]);
-        yield put ({type: FETCH_USERS_SUCCESS, payload: json.hits.map(hit => {return {key: hit.entityKey, name: hit.values[0]}})})
+        var json = yield call([res, res.json]);
+        yield put({ type: USER_ACTIONS.FETCH_USERS_SUCCESS, payload: json.hits.map(hit => { return { key: hit.entityKey, name: hit.values[0] } }) })
     } else {
-        yield put ({type: ERROR, payload: res.statusText});
+        yield put({ type: COMMON_ACTIONS.ERROR, payload: res.statusText });
     }
 
 }
@@ -85,36 +93,36 @@ function* fetchUsersAsync(action) {
 export const fetchUsers = () => dispatch => {
 
     dispatch({
-        type: FETCH_USERS,
+        type: USER_ACTIONS.FETCH_USERS,
         payload: undefined
     });
-/*
-    console.log(`fetching users...`);
-
-    const query = { "type": "User", "pageSize": 200, "pageNumber": 1, "propertyNames": ["User.fullName"], "sortBy": [{ "propertyName": "CoalesceEntity.LastModified", "sortOrder": "ASC" }], "group": { "operator": "AND", "criteria": [{ "key": "456b70f3-3e6c-4ab2-967c-99a00ec3267e", "recordset": "CoalesceEntity", "field": "name", "operator": "EqualTo", "value": "User", "matchCase": false }], "groups": [] } };
-
-    fetch(`cxf/data/search/complex/`, {
-        method: "POST",
-        headers: new Headers({
-            'content-type': 'application/json; charset=utf-8'
-        }),
-        body: JSON.stringify(query)
-    })
-    .then(res => {
-
-        if (!res.ok) {
-            throw Error(res.statusText);
-        }
-
-        return res.json();
-    })
-    .then(data => dispatch({
-        type: FETCH_USERS,
-        payload: data.hits.map(hit => {return {key: hit.entityKey, name: hit.values[0]}})
-    }))
-    .catch(error => dispatch({
-        type: ERROR,
-        payload: error.message
-    }));
-*/
+    /*
+        console.log(`fetching users...`);
+    
+        const query = { "type": "User", "pageSize": 200, "pageNumber": 1, "propertyNames": ["User.fullName"], "sortBy": [{ "propertyName": "CoalesceEntity.LastModified", "sortOrder": "ASC" }], "group": { "operator": "AND", "criteria": [{ "key": "456b70f3-3e6c-4ab2-967c-99a00ec3267e", "recordset": "CoalesceEntity", "field": "name", "operator": "EqualTo", "value": "User", "matchCase": false }], "groups": [] } };
+    
+        fetch(`cxf/data/search/complex/`, {
+            method: "POST",
+            headers: new Headers({
+                'content-type': 'application/json; charset=utf-8'
+            }),
+            body: JSON.stringify(query)
+        })
+        .then(res => {
+    
+            if (!res.ok) {
+                throw Error(res.statusText);
+            }
+    
+            return res.json();
+        })
+        .then(data => dispatch({
+            type: USER_ACTIONS.FETCH_USERS,
+            payload: data.hits.map(hit => {return {key: hit.entityKey, name: hit.values[0]}})
+        }))
+        .catch(error => dispatch({
+            type: COMMON_ACTIONS.ERROR,
+            payload: error.message
+        }));
+    */
 }

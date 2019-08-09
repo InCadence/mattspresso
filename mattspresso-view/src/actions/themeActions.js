@@ -1,8 +1,8 @@
-import { FETCH_THEME } from './types'
+export const THEME_ACTIONS = {
+    FETCH_THEME: 'FETCH_THEME'
+}
 
 export const fetchTheme = () => dispatch => {
-    console.log('GOT HERE');
-    
     fetch(`/property/theme.json`, {
         method: "GET",
         headers: new Headers({
@@ -11,7 +11,7 @@ export const fetchTheme = () => dispatch => {
         })
         .then(res => res.json())
         .then(data => dispatch({
-            type: FETCH_THEME,
+            type: THEME_ACTIONS.FETCH_THEME,
             payload: data
         }))
         
