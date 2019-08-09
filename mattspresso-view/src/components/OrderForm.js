@@ -33,7 +33,7 @@ class OrderForm extends React.Component {
 		this.state = { 
 				products: [],
 				purchase: {
-					productID:uuid.v4(),
+					productId:uuid.v4(),
 					quantity: 5
 				}
 		};
@@ -55,6 +55,8 @@ class OrderForm extends React.Component {
 		
 		console.log("OrderPlaced");
 		
+		this.props.makePurchase(this.state.purchase);
+
 		var emptyCart = [];
 		this.setState({
 			products: emptyCart
