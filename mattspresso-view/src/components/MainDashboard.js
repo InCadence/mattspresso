@@ -40,6 +40,8 @@ class MainDashboard extends React.PureComponent {
 
 
   render(){
+    console.log("LOSDIFJSOFIJDSF")
+      console.log(this.props)
       return(
         <div>
         <Grid>
@@ -49,7 +51,7 @@ class MainDashboard extends React.PureComponent {
             </Typography>
             <LinearProgress color="secondary" variant="determinate" value={25} />
             <Typography variant="subtitle1" gutterBottom>
-            Reward Points: 123456
+            {this.props.user ? this.props.user.userRecord.fullName : ""}
             </Typography>
 
           </Grid>
