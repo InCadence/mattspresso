@@ -1,6 +1,7 @@
-import { COMMON_ACTIONS } from '../actions';
+import { ACTIONS } from '../actions/productActions';
 
 const initialState = {
+
 }
 
 export default function (state = initialState, action) {
@@ -8,13 +9,10 @@ export default function (state = initialState, action) {
     const newState = { ...state };
 
     switch (action.type) {
-        case COMMON_ACTIONS.ERROR:
-            newState.error = action.payload;
-            break;
-        default: 
+        case ACTIONS.FETCH_PRODUCTS:
+        default:
             break;
     }
 
     return newState;
-
 }

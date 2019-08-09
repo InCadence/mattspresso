@@ -1,0 +1,3 @@
+export const ACTIONS = {
+    FETCH_INVENTORY: "FETCH_INVENTORY"
+}

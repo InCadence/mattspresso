@@ -17,7 +17,7 @@ import Button from '@material-ui/core/Button';
 import { clearError } from './actions';
 
 const home = () => (
-  <CurrentUser userkey="dce9b003-0b01-4032-9a52-6062c355381c" />
+  <CurrentUser userkey="c9449e43-5e2c-4874-8900-55d5708f2005" />
 ) 
 
 class App extends React.PureComponent {

@@ -1,24 +1,25 @@
-import { USER_ACTIONS } from '../actions/userActions';
+import { ACTIONS } from '../actions/userActions';
 
 const initialState = {
-    users: {}
+
 }
 
 export default function (state = initialState, action) {
+
+    const newState = { ...state };
+
     switch (action.type) {
-        case USER_ACTIONS.FETCH_USER_SUCCESS:
-            return {
-                ...state,
-                current: action.payload
-            }
-        case USER_ACTIONS.FETCH_USERS_SUCCESS:
-            return {
-                ...state,
-                list: action.payload
-            }
+        case ACTIONS.FETCH_USER_SUCCESS:
+            newState.current = action.payload;
+            break;
+        case ACTIONS.FETCH_USERS_SUCCESS:
+            newState.list = action.payload;
+            break;
         default:
-        case USER_ACTIONS.FETCH_USER:
-        case USER_ACTIONS.FETCH_USERS:
-            return state;
+        case ACTIONS.FETCH_USER:
+        case ACTIONS.FETCH_USERS:
+            break;
     }
+
+    return newState;
 }

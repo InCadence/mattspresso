@@ -1,7 +1,7 @@
 import { COMMON_ACTIONS } from './';
 import { takeLatest, put, call } from 'redux-saga/effects';
 
-export const USER_ACTIONS = {
+export const ACTIONS = {
     FETCH_USER: 'FETCH_ACCOUNTS',
     FETCH_USER_SUCCESS: 'FETCH_ACCOUNTS_SUCCESS',
 
@@ -10,7 +10,7 @@ export const USER_ACTIONS = {
 }
 
 export function* watchFechUser() {
-    yield takeLatest(USER_ACTIONS.FETCH_USER, fetchUserAsync);
+    yield takeLatest(ACTIONS.FETCH_USER, fetchUserAsync);
 }
 
 function* fetchUserAsync(action) {
@@ -24,7 +24,7 @@ function* fetchUserAsync(action) {
 
     if (res.ok) {
         var json = yield call([res, res.json]);
-        yield put({ type: USER_ACTIONS.FETCH_USER_SUCCESS, payload: json });
+        yield put({ type: ACTIONS.FETCH_USER_SUCCESS, payload: json });
     } else {
         yield put({ type: COMMON_ACTIONS.ERROR, payload: res.statusText });
     }
@@ -34,7 +34,7 @@ function* fetchUserAsync(action) {
 export const fetchUser = (key) => dispatch => {
 
     dispatch({
-        type: USER_ACTIONS.FETCH_USER,
+        type: ACTIONS.FETCH_USER,
         payload: key
     });
     /*
@@ -66,7 +66,7 @@ export const fetchUser = (key) => dispatch => {
 }
 
 export function* watchFechUsers() {
-    yield takeLatest(USER_ACTIONS.FETCH_USERS, fetchUsersAsync);
+    yield takeLatest(ACTIONS.FETCH_USERS, fetchUsersAsync);
 }
 
 function* fetchUsersAsync(action) {
@@ -83,7 +83,7 @@ function* fetchUsersAsync(action) {
 
     if (res.ok) {
         var json = yield call([res, res.json]);
-        yield put({ type: USER_ACTIONS.FETCH_USERS_SUCCESS, payload: json.hits.map(hit => { return { key: hit.entityKey, name: hit.values[0] } }) })
+        yield put({ type: ACTIONS.FETCH_USERS_SUCCESS, payload: json.hits.map(hit => { return { key: hit.entityKey, name: hit.values[0] } }) })
     } else {
         yield put({ type: COMMON_ACTIONS.ERROR, payload: res.statusText });
     }
@@ -93,7 +93,7 @@ function* fetchUsersAsync(action) {
 export const fetchUsers = () => dispatch => {
 
     dispatch({
-        type: USER_ACTIONS.FETCH_USERS,
+        type: ACTIONS.FETCH_USERS,
         payload: undefined
     });
     /*
